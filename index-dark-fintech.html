@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Raja S | Data Analyst Portfolio</title>
+<meta name="description" content="Raja S - Data Analyst and Engineering Graduate. Dashboards, predictive analytics and business intelligence.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#070B14;--panel:#0E1526;--panel2:#131C32;--line:#1E2A47;--text:#E8EDF7;--muted:#8B97B3;--mint:#3DF5A8;--violet:#7C5CFF;--r:18px;
+--head:'Space Grotesk','Segoe UI',system-ui,sans-serif;--body:'Inter','Segoe UI',system-ui,sans-serif}
+:root[data-theme="light"]{--bg:#F4F6FC;--panel:#FFFFFF;--panel2:#EEF1FA;--line:#D9DFEE;--text:#0C1428;--muted:#566080;--mint:#0A9F6B}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:80px}
+body{background:var(--bg);color:var(--text);font:400 16px/1.65 var(--body);overflow-x:hidden}
+body::before{content:"";position:fixed;inset:0;z-index:-1;background:radial-gradient(600px 400px at 85% -5%,rgba(124,92,255,.22),transparent 70%),radial-gradient(500px 400px at 5% 30%,rgba(61,245,168,.09),transparent 70%)}
+a{color:inherit;text-decoration:none}
+h1,h2,h3{font-family:var(--head);line-height:1.15;letter-spacing:-.02em}
+:focus-visible{outline:2px solid var(--mint);outline-offset:3px;border-radius:6px}
+.wrap{width:min(1120px,92%);margin:auto}
+section{padding:90px 0}
+.sec-head{max-width:620px;margin-bottom:44px}
+.sec-head h2{font-size:clamp(1.8rem,4vw,2.6rem)}
+.sec-head p{color:var(--muted);margin-top:12px}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:13px 24px;border-radius:999px;font:600 .95rem var(--head);border:1px solid var(--line);cursor:pointer;transition:transform .2s,box-shadow .2s,background .2s;background:transparent;color:var(--text)}
+.btn:hover{transform:translateY(-2px)}
+.btn.primary{background:linear-gradient(120deg,var(--mint),#9BFFD6);color:#04130D;border:0;box-shadow:0 8px 30px rgba(61,245,168,.25)}
+.btn.primary:hover{box-shadow:0 12px 40px rgba(61,245,168,.4)}
+.card{background:linear-gradient(160deg,var(--panel2),var(--panel));border:1px solid var(--line);border-radius:var(--r);padding:28px;transition:border-color .25s,transform .25s}
+.card:hover{border-color:var(--violet);transform:translateY(-4px)}
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .7s,transform .7s}
+.reveal.in{opacity:1;transform:none}
+
+/* nav */
+nav{position:fixed;top:0;left:0;right:0;z-index:50;transition:background .3s,border-color .3s;border-bottom:1px solid transparent}
+nav.scrolled{background:color-mix(in srgb,var(--bg) 85%,transparent);backdrop-filter:blur(14px);border-color:var(--line)}
+.nav-in{display:flex;align-items:center;justify-content:space-between;height:68px}
+.logo{font:700 1.3rem var(--head);display:flex;align-items:center;gap:10px}
+.logo i{width:30px;height:30px;border-radius:9px;background:linear-gradient(135deg,var(--violet),var(--mint));display:grid;place-items:center;font:700 .95rem var(--head);color:#04130D;font-style:normal}
+.links{display:flex;gap:26px;align-items:center}
+.links a{color:var(--muted);font-size:.93rem;transition:color .2s}
+.links a:hover,.links a.active{color:var(--text)}
+.tools{display:flex;gap:10px;align-items:center}
+.icon-btn{width:40px;height:40px;border-radius:50%;border:1px solid var(--line);background:var(--panel);color:var(--text);cursor:pointer;font-size:1rem}
+.burger{display:none}
+
+/* hero */
+.hero{padding:150px 0 70px}
+.hero-grid{display:grid;grid-template-columns:1fr 1.1fr;gap:50px;align-items:center}
+.chip{display:inline-flex;align-items:center;gap:8px;padding:6px 14px;border:1px solid var(--line);border-radius:999px;background:var(--panel);font-size:.85rem;color:var(--muted)}
+.chip b{width:8px;height:8px;border-radius:50%;background:var(--mint);box-shadow:0 0 0 0 var(--mint);animation:ping 2s infinite}
+@keyframes ping{70%{box-shadow:0 0 0 9px transparent}100%{box-shadow:0 0 0 0 transparent}}
+.hero h1{font-size:clamp(2.2rem,5.2vw,3.7rem);margin:22px 0 18px}
+.grad{background:linear-gradient(100deg,var(--mint),var(--violet));-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero p.lead{color:var(--muted);max-width:480px;margin-bottom:30px}
+.cta{display:flex;gap:14px;flex-wrap:wrap}
+.who{margin-top:34px;color:var(--muted);font-size:.92rem}
+.who strong{color:var(--text);font-family:var(--head)}
+
+/* dashboard mock */
+.dash{background:linear-gradient(160deg,var(--panel2),var(--panel));border:1px solid var(--line);border-radius:22px;padding:20px;box-shadow:0 30px 80px rgba(0,0,0,.35);position:relative}
+.dash-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;font-size:.82rem;color:var(--muted)}
+.dots span{display:inline-block;width:9px;height:9px;border-radius:50%;background:var(--line);margin-right:5px}
+.tabs{display:flex;gap:6px}
+.tab{padding:5px 12px;border-radius:999px;border:1px solid var(--line);background:none;color:var(--muted);font:500 .78rem var(--body);cursor:pointer}
+.tab.on{background:var(--violet);border-color:var(--violet);color:#fff}
+.kpis{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:12px}
+.kpi{background:var(--bg);border:1px solid var(--line);border-radius:12px;padding:12px}
+.kpi small{color:var(--muted);font-size:.72rem}
+.kpi strong{display:block;font:700 1.35rem var(--head)}
+.kpi em{font-style:normal;font-size:.74rem;color:var(--mint)}
+.chart-box{background:var(--bg);border:1px solid var(--line);border-radius:12px;padding:12px;margin-bottom:12px}
+.chart-box svg{width:100%;height:auto;display:block}
+.line-path{stroke-dasharray:1000;stroke-dashoffset:1000;animation:draw 2.2s .4s forwards}
+@keyframes draw{to{stroke-dashoffset:0}}
+.bars{display:flex;align-items:flex-end;gap:8px;height:70px}
+.bars i{flex:1;border-radius:6px 6px 2px 2px;background:linear-gradient(var(--violet),rgba(124,92,255,.25));height:0;transition:height 1s cubic-bezier(.2,.8,.2,1)}
+.float{position:absolute;right:-12px;bottom:-18px;background:var(--panel);border:1px solid var(--mint);border-radius:14px;padding:10px 14px;font-size:.78rem;box-shadow:0 10px 30px rgba(0,0,0,.35);animation:bob 4s ease-in-out infinite}
+.float b{color:var(--mint);font-family:var(--head)}
+@keyframes bob{50%{transform:translateY(-8px)}}
+
+/* stats strip */
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:70px}
+.stat{text-align:center;padding:20px 10px}
+.stat strong{font:700 2rem var(--head);display:block}
+.stat span{color:var(--muted);font-size:.88rem}
+
+/* services */
+.grid4{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+.ico{width:46px;height:46px;border-radius:13px;background:rgba(124,92,255,.15);display:grid;place-items:center;margin-bottom:18px;font-size:1.3rem}
+.card h3{font-size:1.1rem;margin-bottom:8px}
+.card p{color:var(--muted);font-size:.93rem}
+
+/* skills */
+.skill-wrap{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+.skill{margin-bottom:18px}
+.skill-row{display:flex;justify-content:space-between;font-size:.92rem;margin-bottom:7px}
+.track{height:8px;border-radius:99px;background:var(--line);overflow:hidden}
+.fill{height:100%;width:0;border-radius:99px;background:linear-gradient(90deg,var(--violet),var(--mint));transition:width 1.3s cubic-bezier(.2,.8,.2,1)}
+.pills{display:flex;flex-wrap:wrap;gap:10px}
+.pill{padding:8px 16px;border:1px solid var(--line);background:var(--panel);border-radius:999px;font-size:.88rem;transition:all .2s}
+.pill:hover{border-color:var(--mint);color:var(--mint)}
+
+/* projects */
+.filters{display:flex;gap:10px;margin-bottom:26px;flex-wrap:wrap}
+.f{padding:8px 18px;border-radius:999px;border:1px solid var(--line);background:none;color:var(--muted);cursor:pointer;font:500 .88rem var(--body);transition:all .2s}
+.f.on{background:var(--text);color:var(--bg);border-color:var(--text)}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.proj .viz{height:130px;border-radius:12px;background:var(--bg);border:1px solid var(--line);margin-bottom:20px;padding:14px;display:flex;align-items:flex-end;gap:7px;overflow:hidden}
+.proj .viz i{flex:1;border-radius:5px 5px 1px 1px;background:linear-gradient(var(--mint),rgba(61,245,168,.15));height:var(--h);transform-origin:bottom;transition:transform .5s}
+.proj:hover .viz i{transform:scaleY(1.12)}
+.proj .viz.v2 i{background:linear-gradient(var(--violet),rgba(124,92,255,.15))}
+.tag{display:inline-block;font-size:.75rem;color:var(--mint);margin:10px 8px 0 0}
+.proj.hide{display:none}
+
+/* why */
+.quote{border-radius:26px;padding:clamp(28px,5vw,60px);background:linear-gradient(135deg,rgba(124,92,255,.22),rgba(61,245,168,.08));border:1px solid var(--line)}
+.quote blockquote{font:600 clamp(1.3rem,3vw,2rem)/1.3 var(--head);margin-bottom:20px;max-width:800px}
+.quote p{color:var(--muted);max-width:720px}
+
+/* testimonials */
+.t-card{border-style:dashed}
+.t-card .av{width:44px;height:44px;border-radius:50%;background:var(--line);margin-bottom:14px}
+.t-card em{color:var(--muted);font-size:.9rem}
+
+/* contact */
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+.c-row{display:flex;gap:14px;align-items:center;padding:14px 0;border-bottom:1px solid var(--line);color:var(--muted);transition:color .2s}
+.c-row:hover{color:var(--mint)}
+.c-row span:first-child{width:38px;height:38px;border-radius:11px;background:var(--panel2);display:grid;place-items:center}
+form{display:grid;gap:14px}
+input,textarea{width:100%;padding:14px 16px;border-radius:12px;border:1px solid var(--line);background:var(--bg);color:var(--text);font:inherit}
+textarea{min-height:120px;resize:vertical}
+input:focus,textarea:focus{border-color:var(--violet);outline:none}
+.note{font-size:.82rem;color:var(--muted)}
+footer{border-top:1px solid var(--line);padding:30px 0;color:var(--muted);font-size:.88rem}
+.foot{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px}
+#toTop{position:fixed;right:20px;bottom:20px;opacity:0;pointer-events:none;transition:opacity .3s}
+#toTop.show{opacity:1;pointer-events:auto}
+
+@media(max-width:980px){
+ .hero-grid,.skill-wrap,.contact-grid{grid-template-columns:1fr}
+ .grid4{grid-template-columns:1fr 1fr}.grid3{grid-template-columns:1fr 1fr}
+ .stats{grid-template-columns:1fr 1fr}
+ .float{right:8px}
+}
+@media(max-width:720px){
+ section{padding:64px 0}.hero{padding-top:120px}
+ .burger{display:grid}
+ .links{position:fixed;top:68px;left:0;right:0;flex-direction:column;gap:0;background:var(--panel);border-bottom:1px solid var(--line);max-height:0;overflow:hidden;transition:max-height .35s}
+ .links.open{max-height:420px}
+ .links a{padding:16px 6%;width:100%;border-top:1px solid var(--line)}
+ .grid4,.grid3{grid-template-columns:1fr}
+ .kpis{grid-template-columns:1fr 1fr 1fr;gap:6px}.kpi strong{font-size:1.05rem}
+}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.reveal{opacity:1;transform:none}.line-path{stroke-dashoffset:0}}
+</style>
+</head>
+<body>
+<nav id="nav">
+ <div class="wrap nav-in">
+  <a href="#home" class="logo"><i>R</i>Raja S</a>
+  <div class="links" id="links">
+   <a href="#services">Services</a><a href="#skills">Skills</a><a href="#projects">Projects</a>
+   <a href="#cases">Case studies</a><a href="#why">Why me</a><a href="#contact">Contact</a>
+  </div>
+  <div class="tools">
+   <button class="icon-btn" id="theme" aria-label="Toggle light and dark theme">◐</button>
+   <button class="icon-btn burger" id="burger" aria-label="Open menu">☰</button>
+  </div>
+ </div>
+</nav>
+
+<main>
+<section class="hero" id="home">
+ <div class="wrap">
+  <div class="hero-grid">
+   <div>
+    <span class="chip"><b></b>Open to data analyst roles</span>
+    <h1>Turning raw data into <span class="grad">actionable business insights.</span></h1>
+    <p class="lead">I'm Raja S, a data analyst and engineering graduate. I turn data into clear, meaningful insights that support better business decisions and real-world outcomes.</p>
+    <div class="cta">
+      <a class="btn primary" href="#projects">View my projects</a>
+      <a class="btn" href="#contact">Contact me</a>
+    </div>
+    <p class="who"><strong>SQL</strong> · <strong>Python</strong> · <strong>Power BI</strong> · <strong>Excel</strong></p>
+   </div>
+
+   <div class="dash" aria-label="Sample analytics dashboard">
+    <div class="dash-top">
+      <div class="dots"><span></span><span></span><span></span></div>
+      <div class="tabs" role="tablist">
+        <button class="tab on" data-d="0">HR</button>
+        <button class="tab" data-d="1">Healthcare</button>
+        <button class="tab" data-d="2">Customers</button>
+      </div>
+    </div>
+    <div class="kpis">
+      <div class="kpi"><small id="k1l">Headcount</small><strong id="k1">0</strong><em id="k1c">+4.2%</em></div>
+      <div class="kpi"><small id="k2l">Retention</small><strong id="k2">0</strong><em id="k2c">+1.8%</em></div>
+      <div class="kpi"><small id="k3l">Engagement</small><strong id="k3">0</strong><em id="k3c">+3.1%</em></div>
+    </div>
+    <div class="chart-box">
+      <svg viewBox="0 0 400 120" preserveAspectRatio="none" aria-hidden="true">
+        <defs><linearGradient id="ag" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#3DF5A8" stop-opacity=".35"/><stop offset="1" stop-color="#3DF5A8" stop-opacity="0"/></linearGradient></defs>
+        <path id="area" fill="url(#ag)" d=""/>
+        <path id="line" class="line-path" fill="none" stroke="#3DF5A8" stroke-width="2.5" stroke-linecap="round" d=""/>
+      </svg>
+    </div>
+    <div class="chart-box"><div class="bars" id="bars"></div></div>
+    <div class="float"><b>Insight:</b> trends found in seconds</div>
+   </div>
+  </div>
+
+  <div class="stats">
+   <div class="card stat reveal"><strong data-n="3">0</strong><span>Dashboard projects</span></div>
+   <div class="card stat reveal"><strong data-n="3">0</strong><span>Case studies</span></div>
+   <div class="card stat reveal"><strong data-n="4">0</strong><span>Core analytics services</span></div>
+   <div class="card stat reveal"><strong data-n="9">0</strong><span>Skills and methods</span></div>
+  </div>
+ </div>
+</section>
+
+<section id="services">
+ <div class="wrap">
+  <div class="sec-head reveal"><h2>Services</h2><p>What I can do for your team, from messy spreadsheets to decision-ready dashboards.</p></div>
+  <div class="grid4">
+   <article class="card reveal"><div class="ico">📊</div><h3>Data visualization and interactive dashboards</h3><p>Clear, interactive dashboards that turn complex data into meaningful visual insights.</p></article>
+   <article class="card reveal"><div class="ico">🔮</div><h3>Predictive analytics and data modeling</h3><p>Predictive modeling and analytical techniques that identify patterns and support data-driven decisions.</p></article>
+   <article class="card reveal"><div class="ico">📈</div><h3>Business intelligence and reporting</h3><p>Structured reports and BI solutions that improve visibility into key metrics and performance.</p></article>
+   <article class="card reveal"><div class="ico">🧹</div><h3>Data cleaning, transformation and analysis</h3><p>Clean, transform and analyze data to uncover reliable insights and meaningful patterns.</p></article>
+  </div>
+ </div>
+</section>
+
+<section id="skills">
+ <div class="wrap">
+  <div class="sec-head reveal"><h2>Skills and tools</h2><p>The toolkit I use to go from raw tables to clear answers.</p></div>
+  <div class="skill-wrap">
+   <div class="card reveal" id="skillbars">
+    <div class="skill"><div class="skill-row"><span>SQL (PostgreSQL)</span></div><div class="track"><div class="fill" data-w="85"></div></div></div>
+    <div class="skill"><div class="skill-row"><span>Python (Pandas, NumPy, Matplotlib)</span></div><div class="track"><div class="fill" data-w="80"></div></div></div>
+    <div class="skill"><div class="skill-row"><span>Power BI</span></div><div class="track"><div class="fill" data-w="88"></div></div></div>
+    <div class="skill"><div class="skill-row"><span>Microsoft Excel</span></div><div class="track"><div class="fill" data-w="90"></div></div></div>
+    <div class="skill"><div class="skill-row"><span>Predictive modeling</span></div><div class="track"><div class="fill" data-w="70"></div></div></div>
+    <p class="note">Bars show my own sense of comfort level, not a test score.</p>
+   </div>
+   <div class="reveal">
+    <div class="card" style="margin-bottom:20px">
+     <h3 style="margin-bottom:16px">Methods</h3>
+     <div class="pills"><span class="pill">Data Visualization</span><span class="pill">Predictive Modeling</span><span class="pill">Exploratory Data Analysis</span><span class="pill">Statistical Analysis</span><span class="pill">Dashboard Design</span></div>
+    </div>
+    <div class="card">
+     <h3 style="margin-bottom:16px">Tools and technologies</h3>
+     <div class="pills"><span class="pill">Power BI</span><span class="pill">Microsoft Excel</span><span class="pill">Python</span><span class="pill">Pandas</span><span class="pill">NumPy</span><span class="pill">Matplotlib</span><span class="pill">SQL</span><span class="pill">PostgreSQL</span><span class="pill">GitHub</span><span class="pill">Jupyter Notebook</span><span class="pill">Visual Studio Code</span></div>
+    </div>
+   </div>
+  </div>
+ </div>
+</section>
+
+<section id="projects">
+ <div class="wrap">
+  <div class="sec-head reveal"><h2>Projects</h2><p>Three dashboards built around real business questions.</p></div>
+  <div class="filters reveal" id="filters">
+   <button class="f on" data-f="all">All</button><button class="f" data-f="people">Workforce</button><button class="f" data-f="health">Healthcare</button><button class="f" data-f="cust">Customers</button>
+  </div>
+  <div class="grid3">
+   <article class="card proj reveal" data-c="people">
+    <div class="viz"><i style="--h:40%"></i><i style="--h:65%"></i><i style="--h:50%"></i><i style="--h:80%"></i><i style="--h:60%"></i><i style="--h:90%"></i><i style="--h:70%"></i></div>
+    <h3>HR Analytics Dashboard</h3>
+    <p>An interactive dashboard that tracks key workforce metrics, employee distribution and organizational performance indicators.</p>
+    <span class="tag">Workforce analytics</span><span class="tag">Employee metrics</span><span class="tag">Organizational performance</span>
+   </article>
+   <article class="card proj reveal" data-c="health">
+    <div class="viz v2"><i style="--h:55%"></i><i style="--h:35%"></i><i style="--h:75%"></i><i style="--h:60%"></i><i style="--h:85%"></i><i style="--h:50%"></i><i style="--h:68%"></i></div>
+    <h3>Healthcare Analytics Dashboard</h3>
+    <p>A data-driven dashboard focused on patient trends, medical operational efficiency and key healthcare performance indicators.</p>
+    <span class="tag">Patient trends</span><span class="tag">Operational efficiency</span><span class="tag">Healthcare KPIs</span>
+   </article>
+   <article class="card proj reveal" data-c="cust">
+    <div class="viz"><i style="--h:30%"></i><i style="--h:50%"></i><i style="--h:72%"></i><i style="--h:58%"></i><i style="--h:88%"></i><i style="--h:66%"></i><i style="--h:95%"></i></div>
+    <h3>Customer Behavior Dashboard</h3>
+    <p>Analyzed purchasing behavior, preferences and engagement to find key trends, with insights that support segmentation, retention and business decisions.</p>
+    <span class="tag">Customer behavior</span><span class="tag">Segmentation</span><span class="tag">Retention</span>
+   </article>
+  </div>
+ </div>
+</section>
+
+<section id="cases">
+ <div class="wrap">
+  <div class="sec-head reveal"><h2>Case studies</h2><p>The thinking behind each dashboard.</p></div>
+  <div class="grid3">
+   <article class="card reveal"><div class="ico">👥</div><h3>HR Workforce Optimization</h3><p>Detailed analysis of workforce data showing how the HR dashboard supports talent oversight and improves reporting efficiency.</p></article>
+   <article class="card reveal"><div class="ico">🏥</div><h3>Healthcare Operational Metrics</h3><p>In-depth analysis of healthcare data, structuring information to improve operational visibility.</p></article>
+   <article class="card reveal"><div class="ico">🛒</div><h3>Customer Purchasing Behavior Analysis</h3><p>Analysis of purchasing behavior to identify key trends and customer segments, with insights for retention and business growth.</p></article>
+  </div>
+ </div>
+</section>
+
+<section id="why">
+ <div class="wrap">
+  <div class="quote reveal">
+   <blockquote>“Smart analytics starts with understanding business goals, not just building complex charts.”</blockquote>
+   <p>I focus on finding meaningful patterns in data to solve real-world problems. I combine an engineering background with SQL, Python, Power BI and Excel to deliver clear, actionable data solutions that support informed decisions and business growth.</p>
+  </div>
+ </div>
+</section>
+
+<section id="testimonials">
+ <div class="wrap">
+  <div class="sec-head reveal"><h2>Testimonials</h2><p>Feedback from mentors, guides and clients will appear here.</p></div>
+  <div class="grid3">
+   <div class="card t-card reveal"><div class="av"></div><h3>Internship mentor or team lead</h3><em>Testimonial coming soon.</em></div>
+   <div class="card t-card reveal"><div class="av"></div><h3>Academic project guide or peer review</h3><em>Testimonial coming soon.</em></div>
+   <div class="card t-card reveal"><div class="av"></div><h3>Client or stakeholder feedback</h3><em>Testimonial coming soon.</em></div>
+  </div>
+ </div>
+</section>
+
+<section id="contact">
+ <div class="wrap">
+  <div class="sec-head reveal"><h2>Let's work with your data</h2><p>Send a message or reach me directly. I reply as soon as I can.</p></div>
+  <div class="contact-grid">
+   <div class="card reveal">
+    <a class="c-row" href="mailto:rajaselvakumar92@gmail.com"><span>✉</span>rajaselvakumar92@gmail.com</a>
+    <a class="c-row" href="tel:+918438669899"><span>☎</span>8438669899</a>
+    <a class="c-row" href="https://wa.me/8438669899" target="_blank" rel="noopener"><span>💬</span>WhatsApp</a>
+    <a class="c-row" href="https://github.com/raja-selvakumar" target="_blank" rel="noopener"><span>⌥</span>github.com/raja-selvakumar</a>
+    <a class="c-row" href="https://linkedin.com/in/raja-selvakumar" target="_blank" rel="noopener"><span>in</span>linkedin.com/in/raja-selvakumar</a>
+   </div>
+   <form class="card reveal" id="form">
+    <input id="fn" placeholder="Your name" required aria-label="Your name">
+    <input id="fe" type="email" placeholder="Your email" required aria-label="Your email">
+    <textarea id="fm" placeholder="Tell me about your project" required aria-label="Message"></textarea>
+    <button class="btn primary" type="submit">Send message</button>
+    <p class="note" id="fnote">This opens your email app with the message ready to send.</p>
+   </form>
+  </div>
+ </div>
+</section>
+</main>
+
+<footer><div class="wrap foot"><span>© <span id="yr"></span> Raja S. All rights reserved.</span><span>Data analytics · Business intelligence · Dashboards</span></div></footer>
+<button class="icon-btn" id="toTop" aria-label="Back to top">↑</button>
+
+<script>
+const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
+$('#yr').textContent=new Date().getFullYear();
+
+/* nav */
+const nav=$('#nav'),top=$('#toTop');
+addEventListener('scroll',()=>{nav.classList.toggle('scrolled',scrollY>20);top.classList.toggle('show',scrollY>600)},{passive:true});
+top.onclick=()=>scrollTo({top:0});
+$('#burger').onclick=()=>$('#links').classList.toggle('open');
+$$('#links a').forEach(a=>a.onclick=()=>$('#links').classList.remove('open'));
+
+/* theme */
+const root=document.documentElement;
+try{const t=localStorage.getItem('theme');if(t)root.dataset.theme=t}catch(e){}
+$('#theme').onclick=()=>{const n=root.dataset.theme==='light'?'dark':'light';root.dataset.theme=n;try{localStorage.setItem('theme',n)}catch(e){}};
+
+/* active link */
+const secs=$$('main section[id]');
+new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)$$('#links a').forEach(a=>a.classList.toggle('active',a.getAttribute('href')==='#'+e.target.id))}),{rootMargin:'-45% 0px -50% 0px'}).observe&&secs.forEach(s=>new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)$$('#links a').forEach(a=>a.classList.toggle('active',a.getAttribute('href')==='#'+s.id))}),{rootMargin:'-45% 0px -50% 0px'}).observe(s));
+
+/* reveal, counters, skill bars */
+const count=(el,to,dur=1200,suf='',dec=0)=>{const t0=performance.now();(function f(t){const p=Math.min((t-t0)/dur,1),v=to*(1-Math.pow(1-p,3));el.textContent=v.toFixed(dec)+suf;if(p<1)requestAnimationFrame(f)})(t0)};
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(!e.isIntersecting)return;const el=e.target;el.classList.add('in');
+ const n=el.querySelector('[data-n]');if(n)count(n,+n.dataset.n,1000,'+');
+ el.querySelectorAll('.fill').forEach(f=>f.style.width=f.dataset.w+'%');io.unobserve(el)}),{threshold:.15});
+$$('.reveal').forEach(el=>io.observe(el));
+
+/* hero dashboard */
+const D=[
+ {k:[['Headcount',1248,'','+4.2%'],['Retention',92.4,'%','+1.8%'],['Engagement',78,'%','+3.1%']],s:[20,34,28,46,40,62,55,78,70,92],b:[40,65,50,80,60,90,72]},
+ {k:[['Patients',5320,'','+6.5%'],['Bed use',81.2,'%','+2.4%'],['Wait time',18,' min','-9%']],s:[60,52,58,44,48,36,40,30,34,26],b:[55,35,75,60,85,50,68]},
+ {k:[['Customers',9860,'','+8.9%'],['Repeat rate',46.7,'%','+5.2%'],['Avg order',64,'','+2.7%']],s:[10,24,18,40,36,58,52,70,84,96],b:[30,50,72,58,88,66,95]}
+];
+const bars=$('#bars');for(let i=0;i<7;i++)bars.appendChild(document.createElement('i'));
+function path(s){const w=400,h=120,st=w/(s.length-1);const pts=s.map((v,i)=>[i*st,h-8-v*.95]);let d='M'+pts[0];for(let i=1;i<pts.length;i++){const[x0,y0]=pts[i-1],[x1,y1]=pts[i],cx=(x0+x1)/2;d+=` C${cx},${y0} ${cx},${y1} ${x1},${y1}`}return d}
+function show(i){const d=D[i];
+ d.k.forEach((k,j)=>{$('#k'+(j+1)+'l').textContent=k[0];$('#k'+(j+1)+'c').textContent=k[3];const dec=k[1]%1?1:0;count($('#k'+(j+1)),k[1],900,k[2],dec)});
+ const l=$('#line'),p=path(d.s);l.setAttribute('d',p);$('#area').setAttribute('d',p+' L400,120 L0,120Z');
+ l.style.animation='none';l.getBoundingClientRect();l.style.animation='';
+ [...bars.children].forEach((b,j)=>{b.style.height='0';setTimeout(()=>b.style.height=d.b[j]+'%',60+j*60)})}
+$$('.tab').forEach(t=>t.onclick=()=>{$$('.tab').forEach(x=>x.classList.remove('on'));t.classList.add('on');show(+t.dataset.d);clearInterval(auto)});
+show(0);let c=0;const auto=setInterval(()=>{c=(c+1)%3;$$('.tab').forEach((x,i)=>x.classList.toggle('on',i===c));show(c)},7000);
+
+/* project filter */
+$$('.f').forEach(b=>b.onclick=()=>{$$('.f').forEach(x=>x.classList.remove('on'));b.classList.add('on');
+ $$('.proj').forEach(p=>p.classList.toggle('hide',b.dataset.f!=='all'&&p.dataset.c!==b.dataset.f))});
+
+/* contact form -> mailto */
+$('#form').onsubmit=e=>{e.preventDefault();
+ const n=$('#fn').value.trim(),m=$('#fm').value.trim(),em=$('#fe').value.trim();
+ location.href=`mailto:rajaselvakumar92@gmail.com?subject=${encodeURIComponent('Portfolio enquiry from '+n)}&body=${encodeURIComponent(m+'\n\nFrom: '+n+' ('+em+')')}`;
+ $('#fnote').textContent='Thanks, '+n+'. Your email app should open now.'};
+</script>
+</body>
+</html>
